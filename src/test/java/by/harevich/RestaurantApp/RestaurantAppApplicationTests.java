@@ -1,10 +1,10 @@
-package by.harevich.spring_restaurant;
+package by.harevich.RestaurantApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringRestaurantApplicationTests {
+class RestaurantAppApplicationTests {
 
 	@Test
 	void contextLoads() {
