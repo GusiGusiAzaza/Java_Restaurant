@@ -143,6 +143,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.sqlserver</groupId>-->
+<!--			<artifactId>mssql-jdbc</artifactId>-->
+<!--			<version>6.1.0.jre8</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
@@ -151,7 +156,7 @@
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc_auth</artifactId>
-			<version>8.4.1.x64</version>
+			<version>8.4.1.x86</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -45,10 +45,9 @@ public class AuthRestController {
         this.userValidator = userValidator;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> Register(@Valid @RequestBody RegistrationRequestModel userDetails, BindingResult errors) throws MethodArgumentNotValidException {
         userValidator.validate(userDetails, errors);
-
         if(errors.hasErrors()){
             throw new RestValidationException(errors);
         }
@@ -65,7 +64,6 @@ public class AuthRestController {
             String username = requestModel.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestModel.getPassword()));
             User user = userService.FindByUsername(username);
-
             if (user == null) {
                 throw new UsernameNotFoundException("User with username: " + username + " not found");
             }

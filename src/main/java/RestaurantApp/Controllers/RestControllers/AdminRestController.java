@@ -35,7 +35,6 @@ public class AdminRestController {
 
     @RequestMapping(value = "users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> GetAllUsers() {
-
         List<User> users = userService.getAll();
 
         if(users.isEmpty()){
@@ -47,7 +46,6 @@ public class AdminRestController {
 
     @RequestMapping(value = "orders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<OrderResponseModel>> GetAllOrders(){
-
         List<OrderResponseModel> orders = orderService.GetAllResponseModel();
 
         return new ResponseEntity<>(orders,HttpStatus.OK);
@@ -55,7 +53,6 @@ public class AdminRestController {
 
     @RequestMapping(value = "orders/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderResponseModel> AcceptOrder(@PathVariable(value = "id") Integer id){
-
         if(orderService.GetById(id) == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -71,7 +68,6 @@ public class AdminRestController {
 
     @RequestMapping(value = "food", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Food> AddFood(@Valid @RequestBody AddFoodRequestModel foodDto, BindingResult errors){
-
         if(errors.hasErrors()){
             throw new RestValidationException(errors);
         }
@@ -84,7 +80,6 @@ public class AdminRestController {
 
     @RequestMapping(value = "food", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Food> UpdateFood(@Valid @RequestBody UpdateFoodRequestModel foodDto, BindingResult errors) {
-
         if(errors.hasErrors()){
             throw new RestValidationException(errors);
         }
@@ -102,7 +97,6 @@ public class AdminRestController {
 
     @RequestMapping(value = "food/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Food>> DeleteFood(@PathVariable(value = "id") Integer id){
-
         if(foodService.FindById(id) == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
