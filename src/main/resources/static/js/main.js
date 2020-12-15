@@ -131,7 +131,7 @@ function SetNotAuthorizationMenu()
     a1.href = "/login";
     a1.innerHTML = "Sign in";
     let a2 = document.createElement('a');
-    a2.href = "/register";
+    a2.href = "/signup";
     a2.innerHTML = "Sign up";
 
     li1.appendChild(a1);

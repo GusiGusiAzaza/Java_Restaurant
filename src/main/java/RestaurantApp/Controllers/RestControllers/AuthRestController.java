@@ -89,6 +89,4 @@ public class AuthRestController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-
 }
