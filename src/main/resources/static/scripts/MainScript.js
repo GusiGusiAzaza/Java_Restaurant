@@ -27,17 +27,17 @@ async function PaginationButtons()
             document.querySelector('#pagination').appendChild(button);
         }
     }
+
 }
 
 async function ShowFoodsPage(page)
 {
     let response = await fetch("api/foods/" + page,
-    {
-        method: 'GET', mode: 'no-cors',
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
-    });
+        {
+            method: 'GET', mode: 'no-cors',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+        });
     let data = await response.json();
-    console.log(data);
     document.querySelector('#content').innerHTML = '';
     data.forEach(el =>
     {
@@ -62,16 +62,25 @@ async function ShowFoodsPage(page)
         let h2 = document.createElement('h2');
         h2.innerHTML = el.price + ' BYN';
 
+        let id = document.createElement('input');
+        id.setAttribute('type', 'hidden');
+        id.value = el.id;
+
+        div.appendChild(id);
         div.appendChild(img);
         div.appendChild(innerDiv);
         div.appendChild(h2);
+
+        div.onclick = () =>
+        {
+            addToCart(div);
+        };
 
         document.querySelector('#content').insertBefore(div, document.querySelector('#content').firstChild);
     });
 }
 
 async function GetUsernameByToken() {
-
     let token = GetCookie('jwt');
     if(token === false)
     {
@@ -121,9 +130,12 @@ function DeleteCookie ( cookieName )
 
 function SetNotAuthorizationMenu()
 {
+    document.querySelector('.cart').style.visibility = 'hidden';
+    document.querySelector('.cart-menu').classList.remove('cart-menu--active');
+
     let menu = document.querySelector('#header_menu');
     menu.innerHTML = "";
-    console.log('hello')
+
     let ul = document.createElement('ul');
     let li1 = document.createElement('li');
     let li2 = document.createElement('li');
@@ -131,7 +143,7 @@ function SetNotAuthorizationMenu()
     a1.href = "/login";
     a1.innerHTML = "Sign in";
     let a2 = document.createElement('a');
-    a2.href = "/signup";
+    a2.href = "/register";
     a2.innerHTML = "Sign up";
 
     li1.appendChild(a1);
@@ -144,6 +156,7 @@ function SetNotAuthorizationMenu()
 
 function SetUserMenu(username)
 {
+    document.querySelector('.cart').style.visibility = 'visible';
     let menu = document.querySelector('#header_menu');
     menu.innerHTML = "";
 

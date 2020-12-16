@@ -10,6 +10,7 @@ import RestaurantApp.Services.IUserService;
 import RestaurantApp.entity.Food;
 import RestaurantApp.entity.Order;
 import RestaurantApp.entity.Users;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,9 +21,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/admin/")
 public class AdminRestController {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminRestController.class);
 
     @Autowired
     private IUserService userService;
@@ -41,6 +45,7 @@ public class AdminRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+        log.info("/api/admin/users -GET");
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
 
@@ -48,6 +53,7 @@ public class AdminRestController {
     public ResponseEntity<List<OrderResponseModel>> GetAllOrders(){
         List<OrderResponseModel> orders = orderService.GetAllResponseModel();
 
+        log.info("/api/admin/orders -GET");
         return new ResponseEntity<>(orders,HttpStatus.OK);
     }
 
@@ -58,11 +64,12 @@ public class AdminRestController {
         }
 
         Order order = orderService.GetById(id);
-        order.setDelivered(true);
-        orderService.Add(order);
+        orderService.SetDelivered(order);
+
 
         OrderResponseModel response = new OrderResponseModel(order);
 
+        log.info("/api/admin/orders/" + id + " -PUT");
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
@@ -75,6 +82,7 @@ public class AdminRestController {
         Food food = foodDto.ToFood();
         foodService.Add(food);
 
+        log.info("/api/admin/food -POST");
         return new ResponseEntity<>(food,HttpStatus.OK);
     }
 
@@ -92,6 +100,7 @@ public class AdminRestController {
 
         food = foodService.Add(food);
 
+        log.info("/api/admin/food -PUT");
         return new ResponseEntity<>(food,HttpStatus.OK);
     }
 
@@ -102,6 +111,7 @@ public class AdminRestController {
         }
         foodService.DeleteById(id);
 
+        log.info("/api/admin/food/" + id + " -DELETE");
         return new ResponseEntity<>(foodService.getAll(),HttpStatus.OK);
     }
 }

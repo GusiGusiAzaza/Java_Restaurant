@@ -83,10 +83,12 @@ public class AuthRestController {
     public ResponseEntity GetUsername(HttpServletRequest request) {
         String token = jwtTokenProvider.resolveToken(request);
         String username = jwtTokenProvider.getUsername(token);
+        Users user = userService.FindByUsername(username);
 
         Map<Object, Object> response = new HashMap<>();
         response.put("username", username);
 
+        response.put("roles", user.getRoles());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

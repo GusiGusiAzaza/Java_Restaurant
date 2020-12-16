@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>RestaurantApp Admin Panel</title>
+</head>
+<body>
+<header class="header">
+    <div class="header__logo"><a href="/">FoodService</a></div>
+</header>
+
+<div class="admin-menu">
+    <div class="admin-menu__orders" id="ordersDiv"></div>
+    <div class="admin-menu__foods">
+        <div class="admin-menu__foods__add">
+            Add Food:
+            <input id="add_title" type="text" placeholder="Title">
+            <input id="add_price" type="number" placeholder="Price">
+            <input id="add_weight" type="number" placeholder="Weight">
+            <input id="add_image" type="text" placeholder="Image Link">
+            <button onclick="addFood()">Add</button>
+        </div>
+        <div class="admin-menu__foods__update">
+            Update Food:
+            <input id="update_id" type="number" placeholder="Id">
+            <input id="update_title" type="text" placeholder="Title">
+            <input id="update_price" type="number" placeholder="Price">
+            <input id="update_weight" type="number" placeholder="Weight">
+            <input id="update_image" type="text" placeholder="Image Link">
+            <button onclick="updateFood()">Update</button>
+        </div>
+        <div class="admin-menu__foods__remove">
+            Delete Food:
+            <input id="delete_id" type="number" placeholder="Id">
+            <button onclick="deleteFood()">Delete</button>
+        </div>
+
+        <div>
+            <table id="foodTable">
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Weight</th>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<script src="scripts/AdminScript.js"></script>
+</body>
+</html>

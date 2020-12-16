@@ -10,14 +10,18 @@ import java.util.Map;
 
 public class OrderResponseModel {
 
+    private Integer orderId;
     private String username;
+    private String phone;
     private List<Map<String,String>> foods;
     private Boolean isDelivered;
 
     public OrderResponseModel(Order order) {
 
         foods = new LinkedList<>();
+        orderId = order.getId();
         username = order.getUser().getUsername();
+        phone = order.getUser().getPhone();
         isDelivered = order.getDelivered();
 
         for(FoodOrder el: order.getFoodOrders()){
@@ -50,5 +54,21 @@ public class OrderResponseModel {
 
     public void setFoods(List<Map<String, String>> foods) {
         this.foods = foods;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

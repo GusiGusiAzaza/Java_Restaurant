@@ -11,6 +11,8 @@ import RestaurantApp.entity.Users;
 import RestaurantApp.Services.IFoodService;
 import RestaurantApp.Services.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -23,6 +25,9 @@ public class OrderService implements IOrderService {
 
     @Autowired
     private IFoodService foodService;
+
+    @Autowired
+    public JavaMailSender emailSender;
 
     @Autowired
     public OrderService(OrderRepository orderRepository) {
@@ -79,6 +84,20 @@ public class OrderService implements IOrderService {
         return orders;
     }
 
+    @Override
+    public Order SetDelivered(Order order) {
+
+        order.setDelivered(true);
+        Add(order);
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(order.getUser().getEmail());
+        message.setSubject("RestaurantApp Order");
+        message.setText("Your order is ready, estimated delivery time is 20 minutes.");
+        this.emailSender.send(message);
+
+        return order;
+    }
 
     @Override
     public List<OrderResponseModel> GetByUserResponseModel(Users users) {

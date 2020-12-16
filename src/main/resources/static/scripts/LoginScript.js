@@ -18,6 +18,7 @@ async function GetToken()
     if(response.status === 200)
     {
         SetCookie(data.token);
+        localStorage.clear();
         window.location.href = '/';
     }
     else

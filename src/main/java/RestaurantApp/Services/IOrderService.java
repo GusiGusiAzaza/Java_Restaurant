@@ -16,4 +16,6 @@ public interface IOrderService {
     List<Order> GetByUser(Users users);
     List<OrderResponseModel> GetAllResponseModel();
     List<OrderResponseModel> GetByUserResponseModel(Users users);
+
+    Order SetDelivered(Order order);
 }
