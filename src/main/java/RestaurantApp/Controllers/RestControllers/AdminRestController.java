@@ -9,7 +9,7 @@ import RestaurantApp.Services.IOrderService;
 import RestaurantApp.Services.IUserService;
 import RestaurantApp.entity.Food;
 import RestaurantApp.entity.Order;
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,8 +34,8 @@ public class AdminRestController {
     private IFoodService foodService;
 
     @RequestMapping(value = "users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<User>> GetAllUsers() {
-        List<User> users = userService.getAll();
+    public ResponseEntity<List<Users>> GetAllUsers() {
+        List<Users> users = userService.getAll();
 
         if(users.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

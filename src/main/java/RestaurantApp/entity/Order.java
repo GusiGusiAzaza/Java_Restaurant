@@ -17,7 +17,7 @@ public class Order {
 
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = true)
-    private User user;
+    private Users users;
 
     private Boolean isDelivered = false;
 
@@ -45,11 +45,11 @@ public class Order {
         this.foodOrders = foodOrders;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 }

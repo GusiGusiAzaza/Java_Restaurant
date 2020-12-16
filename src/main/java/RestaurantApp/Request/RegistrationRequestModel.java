@@ -1,6 +1,6 @@
 package RestaurantApp.Request;
 
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -27,9 +27,9 @@ public class RegistrationRequestModel {
     @Size(min = 8, max = 16, message = "The password must be equal or greater than 8 characters and less than 16 characters")
     private String password;
 
-    public User ToUser(){
+    public Users ToUser(){
 
-        return new User(
+        return new Users(
                 this.getUsername(),
                 this.getEmail(),
                 this.getPhone(),

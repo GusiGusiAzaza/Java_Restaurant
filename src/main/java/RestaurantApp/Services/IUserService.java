@@ -1,17 +1,17 @@
 package RestaurantApp.Services;
 
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 
 import java.util.List;
 
 public interface IUserService {
-    List<User> getAll();
+    List<Users> getAll();
 
-    User Register(User user);
-    User FindByUsername(String username);
-    User FindById(Integer id);
-    User FindByEmail(String email);
-    User FindByPhone(String phone);
+    Users Register(Users users);
+    Users FindByUsername(String username);
+    Users FindById(Integer id);
+    Users FindByEmail(String email);
+    Users FindByPhone(String phone);
 
     void DeleteById(Integer id);
 }

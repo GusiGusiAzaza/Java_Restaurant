@@ -6,7 +6,7 @@ import RestaurantApp.Services.IFoodService;
 import RestaurantApp.Services.IOrderService;
 import RestaurantApp.Services.IUserService;
 import RestaurantApp.entity.Order;
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import RestaurantApp.security.Jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,8 +40,8 @@ public class OrderRestController {
     public ResponseEntity<List<OrderResponseModel>> Orders(HttpServletRequest request) {
         String token = jwtTokenProvider.resolveToken(request);
         String username = jwtTokenProvider.getUsername(token);
-        User user = userService.FindByUsername(username);
-        List<OrderResponseModel> orders = orderService.GetByUserResponseModel(user);
+        Users users = userService.FindByUsername(username);
+        List<OrderResponseModel> orders = orderService.GetByUserResponseModel(users);
 
         return new ResponseEntity<>(orders,HttpStatus.OK);
     }
@@ -51,9 +51,9 @@ public class OrderRestController {
         //needed to JSON validation
         String token = jwtTokenProvider.resolveToken(request);
         String username = jwtTokenProvider.getUsername(token);
-        User user = userService.FindByUsername(username);
+        Users users = userService.FindByUsername(username);
 
-        Order order = orderService.Add(orderRequestModel,user);
+        Order order = orderService.Add(orderRequestModel, users);
         OrderResponseModel response = new OrderResponseModel(order);
         
         return new ResponseEntity<>(response,HttpStatus.OK);

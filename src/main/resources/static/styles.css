@@ -1,0 +1,255 @@
+body
+{
+    background-color: #e5e5e7;
+    font-family: sans-serif;
+    font-weight: 300;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.header
+{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    background-color: #87c101;
+    padding-left: 20px;
+    padding-right: 50px;
+    color: #ffffff;
+}
+
+.header__logo
+{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.header__logo a
+{
+    color: white;
+    text-decoration: none
+}
+
+.header__menu ul
+{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 900;
+}
+
+.header__menu ul li
+{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.header__menu ul li a
+{
+    color: #ffffff;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.header__menu ul li a:hover
+{
+    color: #004e02;
+    cursor: pointer;
+}
+
+.content
+{
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.content__element
+{
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff5f0;
+    width: 280px;
+    height: 360px;
+    margin-bottom: 20px;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.content__element:hover
+{
+    border: 2px solid #72be06;
+    box-shadow: 0 0 10px rgb(49, 52, 48);
+    cursor: pointer;
+}
+
+.element__title
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+
+}
+
+.content__element img
+{
+    display: flex;
+    width: 250px;
+    height: 230px;
+}
+
+.content__element h2
+{
+    color: #48bd00;
+}
+
+.content__element label
+{
+    font-family: cursive;
+    margin-top: 15px;
+    color: #7a7a7a;
+}
+
+.log_reg-wrapper
+{
+    padding: 10px;
+    background-color: white;
+    margin: 100px auto 0;
+    width: 20%;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.log_reg-form
+{
+    margin-top: 30px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.log_reg-form__element
+{
+    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.log_reg-form__element label
+{
+    color: red;
+    font-size: 12px;
+    font-family: sans-serif;
+    height: 15px;
+    text-align: center;
+}
+
+.log_reg-form input
+{
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 20px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    font-size: large;
+    font-family: sans-serif;
+}
+
+.error
+{
+    border: 1px solid #e30000 !important;
+    box-shadow:0 0 5px 4px rgba(189, 0, 0, 0.29) !important;
+}
+
+.log_reg-form input:focus
+{
+    outline:none;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.20);
+}
+
+.log_reg-form input[type=submit]
+{
+    background-color: #28dd55;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.log_reg-form input[type=submit]:hover
+{
+    background-color: #20d43e;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0 50px white; /* цвет вашего фона */
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: inset 0 0 0 50px white; /* цвет вашего фона */
+}
+
+.log_reg__result
+{
+    width: 80%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: #13bd81;
+}
+
+.basket
+{
+    margin-left: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:  center;
+}
+
+.pagination
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn {
+    margin: 1px;
+}
+

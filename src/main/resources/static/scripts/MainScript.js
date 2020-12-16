@@ -3,7 +3,7 @@ PaginationButtons();
 ShowFoodsPage(0);
 GetUsernameByToken();
 
-async  function PaginationButtons()
+async function PaginationButtons()
 {
     let response = await fetch("api/foods/pages",
         {
@@ -37,6 +37,7 @@ async function ShowFoodsPage(page)
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
     });
     let data = await response.json();
+    console.log(data);
     document.querySelector('#content').innerHTML = '';
     data.forEach(el =>
     {
@@ -83,7 +84,6 @@ async function GetUsernameByToken() {
             headers: {'Authorization': 'Bearer_' + token, 'Accept': 'application/json'}
         });
 
-
     if(response.status === 200)
     {
         let data = await response.json();
@@ -123,7 +123,7 @@ function SetNotAuthorizationMenu()
 {
     let menu = document.querySelector('#header_menu');
     menu.innerHTML = "";
-
+    console.log('hello')
     let ul = document.createElement('ul');
     let li1 = document.createElement('li');
     let li2 = document.createElement('li');

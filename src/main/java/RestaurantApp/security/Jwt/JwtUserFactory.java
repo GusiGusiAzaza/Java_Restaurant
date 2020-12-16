@@ -1,7 +1,7 @@
 package RestaurantApp.security.Jwt;
 
 import RestaurantApp.entity.Role;
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -14,15 +14,15 @@ public final class JwtUserFactory {
     public JwtUserFactory() {
     }
 
-    public static JwtUser create(User user) {
+    public static JwtUser create(Users users) {
         return new JwtUser(
-                user.getId(),
-                user.getUsername(),
-                user.getPhone(),
-                user.getPassword(),
-                user.getEmail(),
+                users.getId(),
+                users.getUsername(),
+                users.getPhone(),
+                users.getPassword(),
+                users.getEmail(),
                 true,
-                mapToGrantedAuthorities(new ArrayList<>(user.getRoles()))
+                mapToGrantedAuthorities(new ArrayList<>(users.getRoles()))
         );
     }
 

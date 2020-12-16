@@ -3,7 +3,7 @@ package RestaurantApp.Services.Implementation;
 import RestaurantApp.Repositories.RoleRepository;
 import RestaurantApp.Repositories.UserRepository;
 import RestaurantApp.entity.Role;
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,39 +29,39 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User Register(User user) {
+    public Users Register(Users users) {
 
         Role roleUser = roleRepository.findByName("USER");
         List<Role> userRoles = new ArrayList<>();
         userRoles.add(roleUser);
-        user.setRoles(userRoles);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        users.setRoles(userRoles);
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
 
-        return userRepository.save(user);
+        return userRepository.save(users);
     }
 
     @Override
-    public List<User> getAll() {
+    public List<Users> getAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public User FindByUsername(String username) {
+    public Users FindByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public User FindById(Integer id) {
+    public Users FindById(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public User FindByEmail(String email) {
+    public Users FindByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
     @Override
-    public User FindByPhone(String phone) {
+    public Users FindByPhone(String phone) {
         return userRepository.findByPhone(phone);
     }
 

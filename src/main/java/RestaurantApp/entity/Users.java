@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
@@ -23,7 +23,7 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     private List<Order> order;
 
 
@@ -86,10 +86,10 @@ public class User {
         this.password = password;
     }
 
-    public User() {
+    public Users() {
     }
 
-    public User(String username, String email , String phone, String password) {
+    public Users(String username, String email , String phone, String password) {
         this.username = username;
         this.email = email;
         this.phone = phone;

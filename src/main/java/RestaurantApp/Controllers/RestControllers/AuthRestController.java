@@ -6,7 +6,7 @@ import RestaurantApp.Request.RegistrationRequestModel;
 
 import RestaurantApp.Services.IUserService;
 import RestaurantApp.Validator.UserValidator;
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import RestaurantApp.security.Jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,16 +46,16 @@ public class AuthRestController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> Register(@Valid @RequestBody RegistrationRequestModel userDetails, BindingResult errors) throws MethodArgumentNotValidException {
+    public ResponseEntity<Users> Register(@Valid @RequestBody RegistrationRequestModel userDetails, BindingResult errors) throws MethodArgumentNotValidException {
         userValidator.validate(userDetails, errors);
         if(errors.hasErrors()){
             throw new RestValidationException(errors);
         }
 
-        User user = userDetails.ToUser();
-        userService.Register(user);
+        Users users = userDetails.ToUser();
+        userService.Register(users);
 
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(users, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,12 +63,12 @@ public class AuthRestController {
         try {
             String username = requestModel.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestModel.getPassword()));
-            User user = userService.FindByUsername(username);
-            if (user == null) {
+            Users users = userService.FindByUsername(username);
+            if (users == null) {
                 throw new UsernameNotFoundException("User with username: " + username + " not found");
             }
 
-            String token = jwtTokenProvider.createToken(username, user.getRoles());
+            String token = jwtTokenProvider.createToken(username, users.getRoles());
             Map<Object, Object> response = new HashMap<>();
             response.put("username", username);
             response.put("token", token);

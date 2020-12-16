@@ -1,7 +1,7 @@
 package RestaurantApp.security;
 
 import RestaurantApp.Services.Implementation.UserService;
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import RestaurantApp.security.Jwt.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,12 +21,12 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.FindByUsername(username);
+        Users users = userService.FindByUsername(username);
 
-        if (user == null) {
+        if (users == null) {
             throw new UsernameNotFoundException("User with username: " + username + " not found");
         }
 
-        return JwtUserFactory.create(user);
+        return JwtUserFactory.create(users);
     }
 }

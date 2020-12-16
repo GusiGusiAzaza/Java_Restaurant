@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
     <title>Sign in</title>
-    <script src="js/login.js"></script>
+    <script src="scripts/loginScript.js"></script>
 </head>
 <body>
-    <header class="header">
-        <div class="header-label"><a href="/">Restaurant App</a></div>
-    </header>
+<header class="header">
+    <div class="header__logo"><a href="/">FoodService</a></div>
+</header>
 
-    <div class="log_reg-wrapper">
-        <div class="log_reg-form">
-            <div class="log_reg-form__element">
-                <label id="label-username"></label>
-                <input id="username" type="text" placeholder="Enter login">
-            </div>
-
-            <div class="log_reg-form__element">
-                <label id="label-password"></label>
-                <input id="password" type="password" placeholder="Enter password">
-            </div>
-
-            <div class="log_reg-form__element">
-                <label></label>
-                <input type="submit" onclick="GetToken()" value="Sign in">
-            </div>
-            <div class="log_reg__result" id="result"></div>
+<div class="log_reg-wrapper">
+    <div class="log_reg-form">
+        <div class="log_reg-form__element">
+            <label id="label-username"></label>
+            <input id="username" type="text" placeholder="username">
         </div>
+
+        <div class="log_reg-form__element">
+            <label id="label-password"></label>
+            <input id="password" type="password" placeholder="password">
+        </div>
+
+        <div class="log_reg-form__element">
+            <label></label>
+            <input type="submit" onclick="GetToken()" value="Sign in">
+        </div>
+        <div class="log_reg__result" id="result"></div>
     </div>
+</div>
 </body>
 </html>

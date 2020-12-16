@@ -7,7 +7,7 @@ import RestaurantApp.Response.OrderResponseModel;
 import RestaurantApp.entity.FoodOrder;
 import RestaurantApp.entity.FoodOrderId;
 import RestaurantApp.entity.Order;
-import RestaurantApp.entity.User;
+import RestaurantApp.entity.Users;
 import RestaurantApp.Services.IFoodService;
 import RestaurantApp.Services.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +35,10 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order Add(OrderRequestModel requestOrder, User user) {
+    public Order Add(OrderRequestModel requestOrder, Users users) {
 
         Order order = new Order();
-        order.setUser(user);
+        order.setUser(users);
         orderRepository.save(order);
 
         List<FoodOrder> foodOrders= new LinkedList<>();
@@ -64,8 +64,8 @@ public class OrderService implements IOrderService {
 
 
     @Override
-    public List<Order> GetByUser(User user) {
-        return orderRepository.findByUser(user);
+    public List<Order> GetByUser(Users users) {
+        return orderRepository.findByUsers(users);
     }
 
     @Override
@@ -81,10 +81,10 @@ public class OrderService implements IOrderService {
 
 
     @Override
-    public List<OrderResponseModel> GetByUserResponseModel(User user) {
+    public List<OrderResponseModel> GetByUserResponseModel(Users users) {
         List<OrderResponseModel> orders = new LinkedList<>();
 
-        for (Order el: GetByUser(user)) {
+        for (Order el: GetByUser(users)) {
             orders.add(new OrderResponseModel(el));
         }
 
