@@ -3,6 +3,7 @@ package RestaurantApp.Controllers.RestControllers;
 import RestaurantApp.Exceptions.RestValidationException;
 import RestaurantApp.Request.AuthorizationRequestModel;
 import RestaurantApp.Request.RegistrationRequestModel;
+import io.swagger.v3.oas.annotations.Operation;
 
 import RestaurantApp.Services.IUserService;
 import RestaurantApp.Validator.UserValidator;
@@ -45,6 +46,7 @@ public class AuthRestController {
         this.userValidator = userValidator;
     }
 
+    @Operation(summary = "Add new user")
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Users> Register(@Valid @RequestBody RegistrationRequestModel userDetails, BindingResult errors) throws MethodArgumentNotValidException {
         userValidator.validate(userDetails, errors);
@@ -58,6 +60,7 @@ public class AuthRestController {
         return new ResponseEntity<>(users, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get jwt token")
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity Login(@RequestBody AuthorizationRequestModel requestModel) {
         try {
@@ -79,6 +82,7 @@ public class AuthRestController {
         }
     }
 
+    @Operation(summary = "Get username by token")
     @RequestMapping(value = "/username", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity GetUsername(HttpServletRequest request) {
         String token = jwtTokenProvider.resolveToken(request);

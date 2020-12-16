@@ -7,6 +7,7 @@ import RestaurantApp.Response.OrderResponseModel;
 import RestaurantApp.Services.IFoodService;
 import RestaurantApp.Services.IOrderService;
 import RestaurantApp.Services.IUserService;
+import io.swagger.v3.oas.annotations.Operation;
 import RestaurantApp.entity.Food;
 import RestaurantApp.entity.Order;
 import RestaurantApp.entity.Users;
@@ -37,6 +38,7 @@ public class AdminRestController {
     @Autowired
     private IFoodService foodService;
 
+    @Operation(summary = "Fetch info about all users")
     @RequestMapping(value = "users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Users>> GetAllUsers() {
         List<Users> users = userService.getAll();
@@ -49,6 +51,7 @@ public class AdminRestController {
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
 
+    @Operation(summary = "Fetch info about all orders")
     @RequestMapping(value = "orders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<OrderResponseModel>> GetAllOrders(){
         List<OrderResponseModel> orders = orderService.GetAllResponseModel();
@@ -57,6 +60,7 @@ public class AdminRestController {
         return new ResponseEntity<>(orders,HttpStatus.OK);
     }
 
+    @Operation(summary = "Update order in to Delivered status")
     @RequestMapping(value = "orders/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderResponseModel> AcceptOrder(@PathVariable(value = "id") Integer id){
         if(orderService.GetById(id) == null){
@@ -73,6 +77,7 @@ public class AdminRestController {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
+    @Operation(summary = "Add food")
     @RequestMapping(value = "food", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Food> AddFood(@Valid @RequestBody AddFoodRequestModel foodDto, BindingResult errors){
         if(errors.hasErrors()){
@@ -86,6 +91,7 @@ public class AdminRestController {
         return new ResponseEntity<>(food,HttpStatus.OK);
     }
 
+    @Operation(summary = "Update info about food")
     @RequestMapping(value = "food", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Food> UpdateFood(@Valid @RequestBody UpdateFoodRequestModel foodDto, BindingResult errors) {
         if(errors.hasErrors()){
@@ -104,6 +110,7 @@ public class AdminRestController {
         return new ResponseEntity<>(food,HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete Food")
     @RequestMapping(value = "food/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Food>> DeleteFood(@PathVariable(value = "id") Integer id){
         if(foodService.FindById(id) == null){

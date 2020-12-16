@@ -5,6 +5,7 @@ import RestaurantApp.Response.OrderResponseModel;
 import RestaurantApp.Services.IFoodService;
 import RestaurantApp.Services.IOrderService;
 import RestaurantApp.Services.IUserService;
+import io.swagger.v3.oas.annotations.Operation;
 import RestaurantApp.entity.Order;
 import RestaurantApp.entity.Users;
 import RestaurantApp.security.Jwt.JwtTokenProvider;
@@ -36,6 +37,7 @@ public class OrderRestController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+    @Operation(summary = "Get all user orders")
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<OrderResponseModel>> Orders(HttpServletRequest request) {
         String token = jwtTokenProvider.resolveToken(request);
@@ -46,6 +48,7 @@ public class OrderRestController {
         return new ResponseEntity<>(orders,HttpStatus.OK);
     }
 
+    @Operation(summary = "Add Order")
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderResponseModel> AddOrder(@RequestBody OrderRequestModel orderRequestModel, HttpServletRequest request){
         //needed to JSON validation
