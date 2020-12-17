@@ -80,6 +80,56 @@ async function ShowFoodsPage(page)
     });
 }
 
+async function Search()
+{
+    let title = document.querySelector("#searchInput").value;
+    let response = await fetch("api/foods/?title=" + title,
+        {
+            method: 'GET', mode: 'no-cors',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+        });
+    let el = await response.json();
+    if(response.status === 200)
+    {
+        document.querySelector('#content').innerHTML = '';
+        let div = document.createElement('div');
+        div.setAttribute('class', 'content__element');
+
+        let img = document.createElement('img');
+        img.src = el.image;
+
+        let innerDiv = document.createElement('div');
+        innerDiv.setAttribute('class', 'element__title');
+
+        let h3 = document.createElement('h3');
+        h3.innerHTML = el.title;
+
+        let label = document.createElement('label');
+        label.innerHTML = el.weight + 'г';
+
+        innerDiv.appendChild(h3);
+        innerDiv.appendChild(label);
+
+        let h2 = document.createElement('h2');
+        h2.innerHTML = el.price + ' BYN';
+
+        let id = document.createElement('input');
+        id.setAttribute('type', 'hidden');
+        id.value = el.id;
+
+        div.appendChild(id);
+        div.appendChild(img);
+        div.appendChild(innerDiv);
+        div.appendChild(h2);
+
+        div.onclick = () =>
+        {
+            addToCart(div);
+        };
+        document.querySelector('#content').insertBefore(div, document.querySelector('#content').firstChild);
+    }
+}
+
 async function GetUsernameByToken() {
     let token = GetCookie('jwt');
     if(token === false)
